@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+import markdown
+from django.utils.html import strip_tags
+
 # Create your models here.
 class Category(models.Model):
     """
@@ -28,7 +31,7 @@ class Post(models.Model):
     modified_time = models.DateTimeField()
     # 摘要
     excerpt = models.CharField(max_length=200,blank=True)
-
+    views = models.PositiveIntegerField(default=0)
     # 这是分类与标签，分类与标签的模型我们已经定义在上面。
     # 我们在这里把文章对应的数据库表和分类、标签对应的数据库表关联了起来，但是关联形式稍微有点不同。
     # 我们规定一篇文章只能对应一个分类，但是一个分类下可以有多篇文章，所以我们使用的是 ForeignKey，即一对多的关联关系。
@@ -48,5 +51,18 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('blog:detail',kwargs={'pk':self.pk})
 
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
+
     class Meta:
         ordering = ['-created_time']
+
+    def save(self,*args,**kwargs):
+        if not self.excerpt:
+            md = markdown.Markdown(extensions=[
+                'markdown.extensions.extra',
+                'markdown.extensions,codehilite',
+            ])
+            self.excerpt = strip_tags(md.convert(self.body))[:54]
+        super(Post,self).save(*args,**kwargs)
