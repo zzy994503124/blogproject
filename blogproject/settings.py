@@ -24,7 +24,7 @@ SECRET_KEY = 's20xmuyy0&+el3z)f!ak3#a76*q_ja!fjnz7%w5f(dsczodwn_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # 为了安全起见，在生产环境下需要关闭 DEBUG 选项以及设置允许访问的域名
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','.ivanzhou.site']
 

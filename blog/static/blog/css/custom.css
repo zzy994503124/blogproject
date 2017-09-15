@@ -889,17 +889,26 @@ img {
     padding-left: 30px;
     font-size: 16px;
 }
-
-.pagination ul {
-    list-style: none;
+.pagination{
+    margin:3px;
+    padding:7px;
+    text-align:center;
+}
+.pagination a.current {
+    background:#46A3FF;
+    border-color:#46A3FF;
+    color:#fff;
 }
 
-.pagination ul li {
-    display: inline-block;
-    font-size: 16px;
-    margin-right: 5px;
+.pagination a{
+    border:#C8C8C8 1px solid;
+    border-radius:2px;
+    padding:5px;
+    margin:2px 2px;
+    display:inline-block;
+    width:30px;
+    color:#505050;
+    text-decoration:none;
+    background:#E8E8E8;
 }
 
-.current a {
-    color: red;
-}
