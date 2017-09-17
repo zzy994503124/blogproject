@@ -449,7 +449,18 @@ img {
 .rss a {
     color: #444;
 }
+.detail_tag{
+    display: inline-block;
 
+}
+.detail_tag h4{
+    display: inline-block;
+    font: 10px;
+    margin-right: 10px;
+}
+.detail_tag ul{
+    display: inline-block;
+}
 /**
  * 6.0 - Footer
  */
